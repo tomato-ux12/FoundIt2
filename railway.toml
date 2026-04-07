@@ -1,0 +1,26 @@
+# railway.toml - Configuration pour Railway.app
+
+[build]
+builder = "dockerfile"
+dockerfilePath = "Dockerfile"
+
+[deploy]
+startCommand = "uvicorn main:app --host 0.0.0.0 --port $PORT"
+healthcheckPath = "/health"
+healthcheckTimeout = 30
+
+[[services]]
+name = "backend"
+type = "web"
+
+[services.env]
+PORT = "8000"
+PYTHONUNBUFFERED = "1"
+ENVIRONMENT = "production"
+
+# Variables d'environnement à configurer dans Railway dashboard:
+# - SUPABASE_URL
+# - SUPABASE_KEY
+# - SUPABASE_SERVICE_ROLE_KEY
+# - ANTHROPIC_API_KEY (optionnel)
+# - CORS_ORIGINS

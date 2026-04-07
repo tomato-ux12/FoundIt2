@@ -1,6 +1,5 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.middleware.gzip import GZIPMiddleware
 from config import settings
 from routes_auth import router as auth_router
 from routes_opportunities import router as opportunities_router
@@ -30,7 +29,6 @@ app.add_middleware(
 )
 
 # Gzip compression
-app.add_middleware(GZIPMiddleware, minimum_size=1000)
 
 # ===== ROUTES =====
 
